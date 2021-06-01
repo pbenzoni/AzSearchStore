@@ -82,8 +82,8 @@ export class AzSearchStore {
 
     // faceting and filtering
 
-    public addRangeFacet(fieldName: string, dataType: Store.RangeDataType, min: number | Date, max: number | Date) {
-        this.store.dispatch(facetsActions.addRangeFacet(fieldName, dataType, min, max));
+    public addRangeFacet(fieldName: string, dataType: Store.RangeDataType, min: number | Date, max: number | Date, lower: number | Date, upper: number | Date) {
+        this.store.dispatch(facetsActions.addRangeFacet(fieldName, dataType, min, max, lower, upper));
     }
     public addCheckboxFacet(fieldName: string, dataType: Store.CheckboxDataType, count: number = 5, sort: Store.FacetSortingMode = "count") {
         this.store.dispatch(facetsActions.addCheckboxFacet(fieldName, dataType, count, sort));
