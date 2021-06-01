@@ -210,7 +210,7 @@ function getRangeFacetClause(dataType: Store.RangeDataType, key: string, filterL
 }
 
 function addRangeFacetAction(state: Store.Facets, action: AddRangeFacetAction): Store.Facets {
-    let { key, min, max, dataType } = action;
+    let { key, min, max, lower, upper, dataType } = action;
 
     switch (dataType) {
         case "number":
@@ -220,8 +220,8 @@ function addRangeFacetAction(state: Store.Facets, action: AddRangeFacetAction): 
             throw new Error("dataType of RangeFacet must be 'number' | 'date'");
     }
 
-    const filterLowerBound = min,
-        filterUpperBound = max;
+    const filterLowerBound = lower,
+        filterUpperBound = upper;
 
     const rangeFacet: Store.RangeFacet = {
         type: "RangeFacet",
@@ -229,8 +229,8 @@ function addRangeFacetAction(state: Store.Facets, action: AddRangeFacetAction): 
         key,
         min,
         max,
-        filterLowerBound: min,
-        filterUpperBound: max,
+        filterLowerBound: lower,
+        filterUpperBound: upper,
         lowerBucketCount: 0,
         middleBucketCount: 0,
         upperBucketCount: 0,
