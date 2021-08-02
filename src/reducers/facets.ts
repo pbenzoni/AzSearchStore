@@ -338,8 +338,12 @@ function buildRangeFilter(facet: Store.RangeFacet): string {
             upperFilter = facet.filterUpperBound;
             break;
         case "date":
-            lowerFilter = (facet.filterLowerBound as Date).toISOString();
-            upperFilter = (facet.filterUpperBound as Date).toISOString();
+            let ld = (facet.filterLowerBound as Date);
+            ld.setHours(ld.getHours() - 8);
+            let ud = (facet.filterUpperBound as Date);
+            ud.setHours(ud.getHours() - 8);
+            lowerFilter = ld.toISOString();
+            upperFilter = ud.toISOString();
             break;
         default:
             break;
